@@ -1,0 +1,59 @@
+#container{
+    width: 40vw;
+    height: 220px;
+    border: 2px solid grey;
+    margin: 10vh auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eccfa2;
+}
+
+#timer{
+    font-size: 51px;
+    margin-top: 31px;
+    border: 1px solid rgb(18, 16, 16);
+    background-color:lightcyan;
+    box-shadow: 0px 0px 9px 1px inset;
+}
+
+#time{
+    margin: 0px 10px;
+}
+
+#buttons-list{
+    position: relative;
+    top: 35px;
+}
+
+#buttons-list input{
+    margin: 12px;
+    padding: 9px 30px;
+    font-size: 17px;
+    color: aliceblue;
+}
+
+#buttons-list #start{
+    background-color: rgba(0, 200, 0, 1.0);
+}
+
+#buttons-list #start:hover{
+    background-color: rgb(0, 160, 0);
+}
+
+#buttons-list #stop{
+    background-color: rgb(200, 0, 0);
+}
+
+#buttons-list #stop:hover{
+    background-color: rgb(167, 0, 0);
+}
+
+#buttons-list #reset{
+    background-color: grey;
+}
+
+#buttons-list #reset:hover{
+    background-color: rgb(79, 79, 79);
+}
