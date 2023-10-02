@@ -1,0 +1,23 @@
+body{
+    font-family: sans-serif;
+}
+
+header{
+    margin-bottom: 20px;
+}
+
+#meal-details{
+    display: flex;
+}
+
+#meal-header{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+
+}
+
+#meal-description{
+    text-align: justify;
+    margin: 10px 67px;
+}
