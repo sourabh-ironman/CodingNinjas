@@ -6,6 +6,30 @@ let myFavouriteMeals = []; //this will store the list of meals marked as favouri
 let myFavouriteListButton = document.querySelector('#my-favourites button');
 let myFavouritesList = document.querySelector('#my-favourites-list');
 
+function handleFoodClick(result){
+    let filteredFoods = document.querySelectorAll('.foodListItem a');
+    console.log('result from handleFoodClick ',result);
+    result.forEach(element =>{
+        console.log('element is ',element);
+    })
+    console.log('filteredFoods[0].innerHTML ',filteredFoods[0].innerHTML);
+    let clickedElemData;
+    filteredFoods.forEach(element => {
+        element.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log('clicked ', e.target.innerText);
+            clickedElemData = result.filter(data=>{
+                return data.strCategory == e.target.innerText;
+            });
+            console.log('clickedElemData ',clickedElemData);
+            sessionStorage.setItem('clickedElementData',JSON.stringify(clickedElemData));
+            window.location.href = './mealDetails.html';
+        })
+        console.log('element ', element);
+    });
+
+}
+
 //This function will get the data from the API
 function getData(){
     fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
@@ -50,29 +74,46 @@ function filterResults(){
         resultBox.innerHTML = '';
     }else{
         display(result);
+        handleFoodClick(result);
     }
-
 }
 
 //this function will display the results of user's search dynamically
 function display(result){
+    // const content = result.map(list=>{
+    //     // console.log('list.strCategory ', list.strCategory);
+    //     // console.log('localStorage.getItem(list.strCategory) ', localStorage.getItem(list.strCategory));
+    //     if(localStorage.getItem(list.strCategory) == 'true'){
+    //         return `
+    //         <li class="foodListItem">
+    //             <a href="./mealDetails.html">${list.strCategory} </a>
+    //             <i id=${list.strCategory} class="fa-solid fa-star changeColor"></i>           
+    //         </li>`;
+    //     }
+    //     return `
+    //     <li class="foodListItem">
+    //         <a href="./mealDetails.html">${list.strCategory} </a>
+    //         <i id=${list.strCategory} class="fa-solid fa-star"></i>           
+    //     </li>`;
+
+    // });
     const content = result.map(list=>{
         // console.log('list.strCategory ', list.strCategory);
         // console.log('localStorage.getItem(list.strCategory) ', localStorage.getItem(list.strCategory));
         if(localStorage.getItem(list.strCategory) == 'true'){
             return `
-            <li>
-                <a href="./mealDetails.html">${list.strCategory} </a>
+            <li class="foodListItem">
+                <a href="">${list.strCategory} </a>
                 <i id=${list.strCategory} class="fa-solid fa-star changeColor"></i>           
             </li>`;
         }
         return `
-        <li>
-            <a href="./mealDetails.html">${list.strCategory} </a>
+        <li class="foodListItem">
+            <a href="">${list.strCategory} </a>
             <i id=${list.strCategory} class="fa-solid fa-star"></i>           
         </li>`;
 
-    })
+    });
     
     resultBox.innerHTML = `
     <ul>
@@ -80,6 +121,10 @@ function display(result){
     </ul>
     `;
 
+    //for handling the click of each option to route them to the food details page
+
+
+    //for handling the click of favourite star on each filtered option
     let filteredResults = document.querySelectorAll('.result-box ul li i');
     // console.log("filteredResults is...",filteredResults);
     filteredResults.forEach((element) => {
