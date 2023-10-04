@@ -1,0 +1,139 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+}
+
+header{
+    height: 100vh;
+    width: 100vw;
+    background-image: url('https://th.bing.com/th/id/OIP.4P7Y_o6pwxcUcnkmy1W4TgHaEK?pid=ImgDet&rs=1');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* text-align: right; 
+    display: flex;
+    justify-content: space-between; */
+}
+nav{
+    height: 58px;
+    width: 100vw;
+}
+#my-favourites{ 
+    padding: 10px;
+    margin-right: 18px;
+}
+#my-favourites button{
+    width: 197px;
+    height: 37px;
+    background-color: rgb(64, 64, 64);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#my-favourites button:hover{
+    background-color: rgb(98, 98, 98);
+}
+#my-favourites-list{
+    width: 196px;
+    height: auto;
+    max-height: 50vh;
+    background-color: white;
+    display: none;
+    box-shadow: 0px 0px 5px 1px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 1px 34px;
+    text-align: center;
+    overflow-y: scroll;
+}
+#my-favourites-list ul{
+    padding: 0px;
+    text-align: left;
+}
+#my-favourites-list ul li{
+    list-style: none;
+    padding: 10px 0px;
+}
+
+#search-box-parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin-left: 14vw;
+ } 
+
+.search-box{
+    width: 60vw;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.row{
+    display: flex;
+    padding: 5px 20px;
+    align-items: center;
+}
+
+input{
+    flex: 1;
+    border: 0;
+    outline: 0;
+    height: 40px;
+    font-size: 18px;
+}
+
+button{
+    background: transparent; 
+    border: 0;
+    outline: 0;
+    width: 25px;
+    height: 25px;
+}
+
+button .fa-solid{
+    width: 25px;
+    font-size: 22px;
+}
+
+.result-box{
+    border-top: 1px solid black;
+}
+
+.result-box ul{
+    list-style: none;
+    padding: 0px 5px;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+
+.result-box ul li{
+    padding: 10px 10px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.result-box ul li:hover{
+    background-color: aquamarine;
+}
+
+.result-box ul li i{
+    color: #727272;
+    cursor: pointer;
+}
+
+.changeColor{
+    color: gold!important;
+    /* border: 1px solid red!important; */
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.block-display{
+    display: block!important;
+}
+
