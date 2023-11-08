@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%=title%></title>
+    <link rel="stylesheet" href="/css/home.css">
+    
+</head>
+<body>
+    <main>
+        <h1>HOME PAGE</h1>
+        <button id="create-project-button">Create a New Project</button>
+        <form id="create-project" action="/create-project" method="post">
+            <input type="text" name="name" placeholder="Name" required/>
+            <input type="text" name="description" placeholder="Description" required/>
+            <input type="text" name="author" placeholder="Author" required/>
+            <button type="submit">Create</button>
+        </form>
+        <hr/>
+        <h2>PROJECTS LIST</h2>
+        <!-- Showing the project list -->
+        <div id="projects-list">
+            <ul>
+                <% for(pl of project_list) {%>                     
+                        <a href="/project-details/<%= pl.id%>">
+                            <li>
+                                <p>Name: <%= pl.name%></p>
+                                <p>Desc: <%= pl.description%></p>
+                                <p>Author: <%= pl.author%></p>
+                            </li>
+                        </a>                    
+                <%} %>
+            </ul>
+        </div>
+    </main>
+    <script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/project_details.css">
+    <script src="https://kit.fontawesome.com/dcab298eb0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="project-details">
+        <h2>Project Details</h2>
+        <p>Name: <%= project_details.name %></p>
+        <p>Description: <%= project_details.description %></p>
+        <p><small>Author: <%= project_details.author %></small></p><hr/>
+    </div>
+
+    <h2>Bugs/Issues</h2>
+    <div id="bugs-form">
+        <div id="button-and-filter">
+            <button id="create-issue-button">Create a New Issue</button>
+            <i class="fa-solid fa-filter"></i>
+            <form id="filter-form" action="/project/<%=project_details.id%>/filter-issue" method="post">
+                Filter By:
+                <select id="select-filter" name="selectFilter">
+                    <option value="Label">Label</option>
+                    <option value="Author">Author</option>
+                </select><br/>
+                <div id="filter-form-label">
+                    <input type="checkbox" name="Bug" id="Bug"/>
+                    <label for="Bug"> Bug</label><br/>
+                    <input type="checkbox" name="Access Request" id="Access Request"/>
+                    <label for="Access Request" > Access Request</label><br/>
+                    <input type="checkbox" name="Severe" id="Severe"/>
+                    <label for="Severe" > Severe</label><br/>
+                    <input type="checkbox" name="Not Severe" id="Not Severe"/>
+                    <label for="Not Severe" > Not Severe</label><br/>
+                    <input type="checkbox" name="Urgent" id="Urgent"/>
+                    <label for="Urgent" > Urgent</label><br/>
+                    <input type="checkbox" name="Not Urgent" id="Not Urgent"/>
+                    <label for="Not Urgent" > Not Urgent</label><br/>
+                </div>
+                <div id="filter-form-author" class="no-disp" >
+                    <input type="checkbox" name="Sourabh" id="Sourabh"/>
+                    <label for="Sourabh"> Sourabh</label><br/>
+                    <input type="checkbox" name="Ironman" id="Ironman"/>
+                    <label for="Ironman"> Ironman</label><br/>
+                    <input type="checkbox" name="Jones" id="Jones"/>
+                    <label for="Jones"> Jones</label><br/>
+                    <input type="checkbox" name="Max Payne" id="Max Payne"/>
+                    <label for="Max Payne"> Max Payne</label><br/>
+                </div>
+                <button id="fetch-filtered-bugs" type="submit">Apply</button>
+            </form>
+        </div>
+        <form id="create-issue" action="/project/<%=project_details.id%>/create-issue" method="post">
+            <input type="text" name="title" placeholder="Title" required/>
+            <input type="text" name="description" placeholder="Description" required/>
+            <label for="labels"> Labels:</label>
+            <select name="labels" multiple required>
+                <option value="Bug">Bug</option>
+                <option value="Access Request">Access Request</option>
+                <option value="Severe">Severe</option>
+                <option value="Not Severe">Not Severe</option>
+                <option value="Urgent">Urgent</option>
+                <option value="Not Urgent">Not Urgent</option>
+            </select>
+            <input type="text" name="author" placeholder="Author" required/>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+    <form id="search-bugs-form" action="/project/<%=project_details.id%>/search-issue" method="post">
+        <div id="search-options">
+            <label for="selectToSearch">Search By:</label>
+            <select id="selectToSearch" name="selectToSearch">
+                <option value="Title">Title</option>
+                <option value="Description">Description</option>
+            </select><br/>
+        </div>
+        <div id="search-section">
+            <div id="search-bugs">
+                <input type="text" name="Search" placeholder="Search" />
+            </div>
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    <div id="bugs-display">
+        <ul>
+            <!-- If the filtering property is false, then show all Issues for the Project  -->
+            <%if(!filtering) {%> 
+                <% for(issue of project_details.issues) {%> 
+                    <li>
+                        <p>Title: <%=issue.title%></p>
+                        <p>Description: <%=issue.description%></p>
+                        <p>Labels: <%=issue.labels%></p>
+                        <p><small>Author: <%=issue.author%></small></p>
+                    </li>
+                <%} %> 
+              <!-- If filtering property is true, then show the data based upon the filtered values -->
+            <%} else {%> 
+                <%for(issue of filtered_issues) {%> 
+                    <li>
+                        <p>Title: <%=issue.title%></p>
+                        <p>Description: <%=issue.description%></p>
+                        <p>Labels: <%=issue.labels%></p>
+                        <p><small>Author: <%=issue.author%></small></p>
+                    </li>
+                <%}%>
+            <%}%>
+        </ul>
+    </div>
+    <script src="/js/project_details.js"></script>
+</body>
+</html>
