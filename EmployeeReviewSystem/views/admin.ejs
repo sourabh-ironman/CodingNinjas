@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= title%></title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <div id="content-body">
+        <form action="/sign-out">
+            <button type="submit">Sign Out</button>
+        </form>
+        <h1>Admin View</h1>
+        <h2>Hello <%= user_name%>!</h2>
+        <button id="create-user">Create User</button>
+        <div id="create-user-form">
+            <form action="/admin-create-employee" method="post">
+                <input type="text" name="name" placeholder="Name of Employee" required>
+                <input type="email" name="email" placeholder="Email" required unique>
+                <input type="password" name="password" placeholder="password" required>
+                <label for="isAdmin">Is Admin?</label>
+                <input type="checkbox" name="isAdmin" id="isAdmin">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    
+        <h3>List of Employees..</h3>
+        <div id="employee-list">
+            <ul class="employee-ul">
+                <% for(let emp of employee_list) {%> 
+                    <li class="employee-list-li">
+                        <div class="user-details">
+                            <div class="name-and-delete">
+                                    <div>
+                                        <strong>
+                                            <%= emp.name%>
+                                            <% if(emp.isAdmin) {%> 
+                                                <span><small>(Admin)</small></span>
+                                            <%}%>
+                                        </strong>
+                                    </div>
+                                    <div>
+                                        <% if(user_name != emp.name) {%> 
+                                            <p><small><a href="/delete-employee/?id=<%= emp._id%>">Delete</a></small></p>                        
+                                        <%}%>
+                                    </div>
+                            </div> 
+                            <p><small><%= emp.email%></small></p>
+                        </div>
+                        <button class="update-employee">Update Employee data</button>
+                        <div class="user-details-edit">
+                            <form action="/user-details-edit/?id=<%= emp._id%>" method="post">
+                                <input type="text" name="name" value="<%= emp.name%>">
+                                <input type="email" name="email" value="<%= emp.email%>">
+                                <input type="submit" value="Update user">
+                            </form>
+                        </div>
+                        <% if(!emp.isAdmin) {%> 
+                            <button id="make-admin" onclick="window.location='/make-admin/?id=<%= emp._id%>' ">Make Employee as Admin</button>                        
+                        <%}%>
+                        
+                        <button class="view-performance-reviews-btn">View Performance Review</button>
+                        <div class="view-performance-review">
+                            <% if(emp.performance_reviews.length){%>
+                                <h3>Reviews</h3>   
+                                <ul class="performance-reviews-list">
+                                        <% for(let pr of emp.performance_reviews) {%> 
+                                            <li>
+                                            <div class="pr-content-and-edit-btn">
+                                            <strong>Content : <%= pr.content%></strong> <br/> 
+                                                <button class="edit-performance-review"><small>Edit</small></button> 
+                                            </div>
+                                            <form class="edit-performance-review-form" action="/edit-performance-review/?id=<%= pr._id%>" method="post">
+                                                <input type="textarea" name="content" placeholder="<%= pr.content%>"/>
+                                                <input type="submit"/>
+                                            </form>    
+                                            <small>CreatedBy : <%= pr.createdBy%></small>
+                                            <button class="ask-for-feedback">Ask for feedback</button>
+                                            <form class="create-feedback-request-form" action="/create-feedback-request" method="post">
+                                                <select name="askFeedbackFrom">
+                                                    <% for(emp of employee_list) {%> 
+                                                        <option>
+                                                            <%= emp.name%>
+                                                        </option>
+                                                    <%}%>                                            
+                                                </select>
+                                                <input type="hidden" name="performanceReviewId" value="<%= pr._id%>">
+                                                <input type="submit"/>
+                                            </form>
+                                            <hr/>
+                                        </li>
+                                    <%}%>
+                                </ul>
+                            <%}else{%> 
+                                <h3>No reviews created</h3>
+                            <%}%>
+                        </div>
+                        <div class="performance_reviews">
+                            <form action="/create-performance-review" method="post">
+                                <input type="text" name="content" placeholder="Add a review">
+                                <input type="hidden" name="employee" value="<%= emp._id %>">
+                                <input type="submit" value="Add Review">
+                            </form>
+                        </div>
+                    </li>
+                <%} %>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

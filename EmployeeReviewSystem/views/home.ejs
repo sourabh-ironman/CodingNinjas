@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= title%></title>
+</head>
+<body>
+    <form action="/sign-out">
+        <button type="submit">Sign Out</button>
+    </form>
+    <h1>Rendered from ejs Views</h1>
+    <div>
+        <ul>
+            <% for(let c of employee_list) {%> 
+                <li>
+                    <p><%= c.name%></p> 
+                    <p><%= c.email%></p>
+                    <a href="/delete-employee/?id=<%= c._id%>">Delete</a>
+                </li>
+            <%} %>
+        </ul>
+    </div>
+</body>
+</html>

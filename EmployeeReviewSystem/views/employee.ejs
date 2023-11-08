@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+    <link rel="stylesheet" href="/css/employee.css">
+</head>
+<body>
+    <div id="content-body">
+        <form action="/sign-out">
+            <button type="submit">Sign Out</button>
+        </form>
+        <h1>Employee Page</h1>
+        <h2>Hello <%= user_name%></h2>
+        <% if(feedbackReq.length) {%> 
+            <h3>Below are the list of performance reviews that need your feedback</h3>
+            <ul id="feedback-list">
+               <% for(fbReq of feedbackReq){ %>
+                    <li>
+                       <strong>Content : <%=fbReq.performance_review.content%></strong><br/>
+                        <small>Review Created By : <%=fbReq.performance_review.createdBy%></small><br/>
+                        <small>Feedback Requested By : <%=fbReq.requestedBy%></small><br/>
+                        <small>Submitted? <%=fbReq.isSubmitted%></small><br/>
+                        <form action="/create-feedback" method="post">
+                            <input type="text" name="feedbackContent" placeholder="write feedback"/>
+                            <input type="hidden" name="feedbackRequestId" value="<%= fbReq._id%>"> 
+                            <input type="hidden" name="performanceReviewId" value="<%= fbReq.performance_review._id%>"> 
+                            <input type="hidden" name="createdBy" value="<%= user_name%>"> 
+                            <input type="submit">
+                        </form>
+                    </li>
+                <%} %>
+            </ul>
+        <%} else {%> 
+            <h3>There are no performance reviews that need your feedback</h3>
+        <%}%>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+body{
+    background-color: darkslategrey;
+}
+#content-body{
+    background-color: blanchedalmond;
+    font-family: sans-serif;
+    margin: 10px auto;
+    width: 70vw;
+    padding: 10px;
+}
+h1{
+    text-align: center;
+    margin-bottom: 59px;
+}
+.employee-ul{
+    list-style: none;
+}
+.employee-list-li{
+    width: 275px;
+    border: 1px solid black;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.employee-list-li:hover{
+    box-shadow: 0px 0px 5px 0px;
+    border: 0;
+}
+.employee-list-li p{
+    margin: 0;
+}
+.employee-list-li button{
+    margin: 3px 0;
+}
+
+#create-user-form{
+    display: none;
+}
+.name-and-delete{
+    display: flex;
+    justify-content: space-between;
+}
+.user-details{
+    margin-bottom: 12px;
+}
+
+.user-details-edit{
+    display: none;
+}
+
+.pr-content-and-edit-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-performance-review-form{
+    display: none;
+}
+.edit-performance-review{
+    width: 34px;
+    height: 22px;
+}
+.create-feedback-request-form{
+    display: none;
+}
+.view-performance-review{
+    display: none;
+}
+.performance-reviews-list li{
+    list-style-type: none;
+}
+
+.block-disp{
+    display: block!important;
+}
