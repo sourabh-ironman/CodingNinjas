@@ -1,0 +1,18 @@
+.contactDetailsHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contactDetailsHeader button{
+    width: 79px;
+    /* padding: 5px; */
+    height: 37px;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 21px;
+    border-radius: 14px;
+    margin-right: 20px;
+  }
+  .contactDetailsHeader button:hover{
+    background-color: aliceblue;
+  }
