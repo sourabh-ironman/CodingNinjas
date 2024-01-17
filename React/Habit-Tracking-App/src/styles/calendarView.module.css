@@ -1,0 +1,26 @@
+ table,td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table{
+    margin: 2px auto;
+}
+td, th{
+    padding: 10px;
+}
+.statusData{
+    cursor: pointer;    
+    font-weight: bolder;
+}
+.statusData:hover{
+    background-color: aliceblue;
+}
+.greenColor{
+    background-color: lightgreen;
+}
+.redColor{
+    background-color: lightcoral;
+}
+.greyColor{
+    background-color: lightgrey;
+}

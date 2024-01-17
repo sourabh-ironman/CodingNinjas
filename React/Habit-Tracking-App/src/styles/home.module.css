@@ -1,0 +1,85 @@
+.habitList{
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+.habitCard{
+    width: 193px;
+    height: 100px;
+    border: 1px solid black;
+    margin: 10px 5px;
+    border-radius: 10px;
+    text-align: left;
+    padding: 10px;
+
+}
+.habitCard .plusImage{
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 10px;
+}
+.plusImage:hover{
+    background-color: aliceblue;
+}
+.cardHeader{
+    position: relative;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+.habitText{
+    font-weight: 600;
+    font-size: large;
+    text-transform: uppercase;    
+}
+.habitStatusOptions{
+    position: absolute;
+    width: 24px;
+    cursor: pointer;
+    top: -2px;
+    right: -10px;
+}
+.habitStatusOptions img{
+    width: 25px;
+    height: 25px;
+}
+.habitStatusList{
+    border: 1px solid black;
+    border-radius: 6px;
+    position: absolute;
+    right: 12px;
+    z-index: 3;
+    background-color: white;
+}
+.habitStatusList ul{
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+.habitStatusList ul li{
+    list-style: none;
+    padding: 5px;
+}
+.habitStatusList ul li:hover{
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.createHabitForm input{
+    font-size: 15px;
+    border-radius: 5px;
+}
+.createHabitForm button{
+    cursor: pointer;
+    margin: 5px 5px 0 0;
+    padding: 5px;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+.createHabitForm button:hover{
+    background-color: white;
+}
